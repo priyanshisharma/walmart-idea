@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Store Navigation
+        </title>
+        <style>
+          .outermost {
+            font: 80%/1.5 monospace;
+            positon: relative;
+            height: 100%;
+            width: 100%;
+            color: #ad3b05;
+            background-color: #fff;
+          }
+          .outermost:before {
+            content: '';
+            height: 100%;
+            vertical-align: middle;
+            width: 50%;
+            display: inline-block;
+          }
+          .inner {
+            display: inline-block;
+            position: relative;
+            width: 75vmin;
+            height: 75vmin;
+            padding: 0;
+            margin: 0 0 0 -37.5vmin;
+            vertical-align: middle;
+          }
+          .positioner {
+            position: absolute;
+            height: 10%;
+            width: 10%;
+          }
+
+          .ball {
+            position: absolute;
+            background-color: rgba(250, 250, 250, .1);
+            width: 10%;
+            height: 10%;
+            border-radius: 50%;
+            top: 45%;
+            left: 45%;
+            /* This makes the ball move a lot niceier. Yes, niceier.  */
+            -webkit-transition: left 1s ease-out, top 1s ease-out;
+            transition: left 1s ease-out, top 1s ease-out;
+            pointer-events: none;
+          }
+
+          /* Some Texture - I always liked the way dotted-fills look... reminds me of Bazooka Joe bubble gum comics. */
+          .dotted {
+            background-image: -webkit-repeating-radial-gradient(
+              center center,
+              rgba(0, 0, 0, 1),
+              rgba(0, 0, 0, 1) 1px,
+              transparent 1px,
+              transparent 100%
+            );
+            background-image: -moz-repeating-radial-gradient(
+              center center,
+              rgba(203, 0, 203, 0.2),
+              rgba(203, 0, 203, 0.2) 1px,
+              transparent 1px,
+              transparent 100%
+            );
+            background-image: -ms-repeating-radial-gradient(
+              center center,
+              rgba(203, 0, 203, 0.2),
+              rgba(203, 0, 203, 0.2) 1px,
+              transparent 1px,
+              transparent 100%
+            );
+            background-image: repeating-radial-gradient(
+              center center,
+              rgba(203, 0, 203, 0.2),
+              rgba(203, 0, 203, 0.2) 1px,
+              transparent 1px,
+              transparent 100%
+            );
+            -webkit-background-size: 3px 3px;
+            -moz-background-size: 3px 3px;
+            background-size: 3px 3px;
+          }
+
+          /* Here is the fun part: Spoof of Concept. */
+          [id^="row-1"], [id^="row-1"]:hover ~ .ball {
+            left: 0;
+          }
+          [id^="row-2"], [id^="row-2"]:hover ~ .ball {
+            left: 10%;
+          }
+          [id^="row-3"], [id^="row-3"]:hover ~ .ball {
+            left: 20%;
+          }
+          [id^="row-4"], [id^="row-4"]:hover ~ .ball {
+            left: 30%;
+          }
+          [id^="row-5"], [id^="row-5"]:hover ~ .ball {
+            left: 40%;
+          }
+          [id^="row-6"], [id^="row-6"]:hover ~ .ball {
+            left: 50%;
+          }
+          [id^="row-7"], [id^="row-7"]:hover ~ .ball {
+            left: 60%;
+          }
+          [id^="row-8"], [id^="row-8"]:hover ~ .ball {
+            left: 70%;
+          }
+          [id^="row-9"], [id^="row-9"]:hover ~ .ball {
+            left: 80%;
+          }
+          [id^="row-10"], [id^="row-10"]:hover ~ .ball {
+            left: 90%;
+          }
+          [id$="col-1"], [id$="col-1"]:hover ~ .ball {
+            top: 0;
+          }
+          [id$="col-2"], [id$="col-2"]:hover ~ .ball {
+            top: 10%;
+          }
+          [id$="col-3"], [id$="col-3"]:hover ~ .ball {
+            top: 20%;
+          }
+          [id$="col-4"], [id$="col-4"]:hover ~ .ball {
+            top: 30%;
+          }
+          [id$="col-5"], [id$="col-5"]:hover ~ .ball {
+            top: 40%;
+          }
+          [id$="col-6"], [id$="col-6"]:hover ~ .ball {
+            top: 50%;
+          }
+          [id$="col-7"], [id$="col-7"]:hover ~ .ball {
+            top: 60%;
+          }
+          [id$="col-8"], [id$="col-8"]:hover ~ .ball {
+            top: 70%;
+          }
+          [id$="col-9"], [id$="col-9"]:hover ~ .ball {
+            top: 80%;
+          }
+          [id$="col-10"], [id$="col-10"]:hover ~ .ball {
+            top: 90%;
+          }
+
+          /* Mouse coord. display. A little Feng shui. */
+          div.stage {
+            padding: 7pt 0;
+            text-align: center;
+          }
+
+          div.trace {
+            font-size: 10pt;
+            line-height: 14pt;
+            color: #ad3b05;
+          }
+
+          /* Useless crap. */
+          .header {
+            font-size: 1.5rem;
+          }
+          .footer {
+            font-size: 0.75rem;
+          }
+
+        </style>
+    </head>
+    <body>
+      <div class="outermost">
+        <div class="inner">
+          <div class="container"><div class="col-md-6">
+            <div id="row-1-col-1" class="positioner" style="background-color: #00ffff;"></div>
+            <div id="row-1-col-2" class="positioner"style="background-color: #00ffff;">Groc</div>
+            <div id="row-1-col-3" class="positioner"style="background-color: #00ffff;"></div>
+            <div id="row-1-col-4" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-1-col-5" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-1-col-6" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-1-col-7" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-1-col-8" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-1-col-9" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-1-col-10" class="positioner"style="background-color: #FEFFCA;"></div>
+            <div id="row-2-col-1" class="positioner" style="background-color: #00ffff;"></div>
+            <div id="row-2-col-2" class="positioner" style="background-color: #00ffff;">eries</div>
+            <div id="row-2-col-3" class="positioner" style="background-color: #00ffff;"></div>
+            <div id="row-2-col-4" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-2-col-5" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-2-col-6" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-2-col-7" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-2-col-8" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-2-col-9" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-2-col-10" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-3-col-1" class="positioner" style="background-color: #00ffff;"></div>
+            <div id="row-3-col-2" class="positioner" style="background-color: #00ffff;">s</div>
+            <div id="row-3-col-3" class="positioner" style="background-color: #00ffff;"></div>
+            <div id="row-3-col-4" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-3-col-5" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-3-col-6" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-3-col-7" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-3-col-8" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-3-col-9" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-3-col-10" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-4-col-1" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-4-col-2" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-4-col-3" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-4-col-4" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-4-col-5" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-4-col-6" class="positioner" style="background-color: #FFD1CA;">Baker</div>
+            <div id="row-4-col-7" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-4-col-8" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-4-col-9" class="positioner" style="background-color: #FEFFCA;">Bill</div>
+            <div id="row-4-col-10" class="positioner"style="background-color: #FEFFCA;">Coun</div>
+            <div id="row-5-col-1" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-5-col-2" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-5-col-3" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-5-col-4" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-5-col-5" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-5-col-6" class="positioner" style="background-color: #FFD1CA;">y</div>
+            <div id="row-5-col-7" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-5-col-8" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-5-col-9" class="positioner" style="background-color: #FEFFCA;">ing</div>
+            <div id="row-5-col-10" class="positioner" style="background-color: #FEFFCA;">ter</div>
+            <div id="row-6-col-1" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-6-col-2" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-6-col-3" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-6-col-4" class="positioner"style="background-color: #808080;"></div>
+            <div id="row-6-col-5" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-6-col-6" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-6-col-7" class="positioner"style="background-color: #FFD1CA;"></div>
+            <div id="row-6-col-8" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-6-col-9" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-6-col-10" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-7-col-1" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-7-col-2" class="positioner" style="background-color: #CAFFF1;">Appa</div>
+            <div id="row-7-col-3" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-7-col-4" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-7-col-5" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-7-col-6" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-7-col-7" class="positioner" style="background-color: #FFD1CA;"></div>
+            <div id="row-7-col-8" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-7-col-9" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-7-col-10" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-8-col-1" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-8-col-2" class="positioner" style="background-color: #CAFFF1;">rel</div>
+            <div id="row-8-col-3" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-8-col-4" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-8-col-5" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-8-col-6" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-8-col-7" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-8-col-8" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-8-col-9" class="positioner"style="background-color: #FEFFCA;"></div>
+            <div id="row-8-col-10" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-9-col-1" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-9-col-2" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-9-col-3" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-9-col-4" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-9-col-5" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-9-col-6" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-9-col-7" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-9-col-8" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-9-col-9" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-9-col-10" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-10-col-1" class="positioner" style="background-color: #CAFFF1;" ></div>
+            <div id="row-10-col-2" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-10-col-3" class="positioner" style="background-color: #CAFFF1;"></div>
+            <div id="row-10-col-4" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-10-col-5" class="positioner" style="background-color: #E4CAFF;"></div>
+            <div id="row-10-col-6" class="positioner" style="background-color: #E4CAFF;">__W</div>
+            <div id="row-10-col-7" class="positioner" style="background-color: #E4CAFF;">__C</div>
+            <div id="row-10-col-8" class="positioner" style="background-color: #808080;"></div>
+            <div id="row-10-col-9" class="positioner" style="background-color: #FEFFCA;"></div>
+            <div id="row-10-col-10" class="positioner" style="background-color: #FEFFCA;"></div>
+            <a href="" class="ball dotted"></a>
+        </div>
+      </div> 
+    </body>
+</html>
